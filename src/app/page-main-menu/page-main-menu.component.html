@@ -1,13 +1,26 @@
+<button class="btn btn-secondary" (click)="goToLoginPage()">Logout</button>
 
-
-<div *ngIf="username != 'a'">
-  Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
-  At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
-  Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
-  At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
-</div>
-<div *ngIf="username == 'a'">
-  <div *ngFor="let user of allUsers">
-    {{user.username}}
+<div class="whitepanel">
+  <div *ngIf="username == 'admin'">
+    <table>
+      <th width="400px;">Username</th>
+      <th>Delete</th>
+      <tr *ngFor="let user of allUsers" style="height:40px;">
+        <td style="margin:2px">{{ user.username }}</td>
+        <td>
+          <button *ngIf="user.username != username" class="btn btn-danger" (click)="deleteUser(user.id)">Delete</button>
+        </td>
+      </tr>
+    </table>
+  </div>
+  <hr/>
+  <div>
+    Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
+    At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
+    Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.
+    At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.
   </div>
 </div>
+
+
+

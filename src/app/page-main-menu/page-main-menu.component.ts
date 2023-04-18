@@ -36,4 +36,23 @@ export class PageMainMenuComponent implements OnInit {
       }
     );
   }
+
+  /**
+     * navigates to "login"-webpage
+     */
+    goToLoginPage() {
+      localStorage.removeItem('Authorization');
+      this.router.navigate(['/login'])
+    }
+
+    deleteUser(id: number) {
+      this.service.deleteUser(id).subscribe(
+          data => {
+            this.ngOnInit();
+          },
+          error => {
+            this.errorMessage="There was a problem while deleting the user.";
+          }
+      );
+    }
 }
