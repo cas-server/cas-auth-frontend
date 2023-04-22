@@ -28,12 +28,10 @@ export class ElementLoginPanelComponent implements OnInit {
   loginUser() {
     this.service.loginUser(this.user).subscribe(
       data => {
-        // this.permission = data;
-        // set jwt as 'Authorization'
         this.response = JSON.parse(data);
         localStorage.setItem('Authorization', this.response.permission);
-        localStorage.setItem('cas-ticket', this.response.ticket)
-        this.router.navigate(['/mainPage'])
+        localStorage.setItem('cas-ticket', this.response.ticket);
+        this.router.navigate(['/mainPage']);
       },
       error => {
         console.log(error)

@@ -24,7 +24,7 @@ export class UsermanagementService {
    * @param user
    */
   public loginUser(user: UserLogin): Observable<any> {
-    return this.http.post("http://localhost:8080/api/login", user, {responseType: 'text'})
+    return this.http.post("http://localhost:8080/api/login", user)
   }
 
   /**
