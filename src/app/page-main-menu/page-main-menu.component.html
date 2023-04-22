@@ -1,14 +1,19 @@
-<button class="btn btn-secondary" (click)="goToLoginPage()">Logout</button>
 
 <div class="whitepanel">
-  <div *ngIf="username == 'admin'">
+  <button class="btn btn-secondary" (click)="goToLoginPage()">Logout</button>
+  <br>
+
+  <div *ngIf="permission == 'admin'">
     <table>
       <th width="400px;">Username</th>
       <th>Delete</th>
       <tr *ngFor="let user of allUsers" style="height:40px;">
         <td style="margin:2px">{{ user.username }}</td>
-        <td>
-          <button *ngIf="user.username != username" class="btn btn-danger" (click)="deleteUser(user.id)">Delete</button>
+        <td *ngIf="user.permission == permission">
+          <button disabled="user.permission != permission" class="btn btn-secondary" (click)="deleteUser(user.id)">Delete</button>
+        </td>
+        <td *ngIf="user.permission != permission">
+          <button class="btn btn-danger" (click)="deleteUser(user.id)">Delete</button>
         </td>
       </tr>
     </table>

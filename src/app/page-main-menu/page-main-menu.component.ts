@@ -10,18 +10,21 @@ import {UserRegistration} from "../model/user-registration";
 })
 export class PageMainMenuComponent implements OnInit {
 
-  username!: String;
+  permission!: String;
   errorMessage!: String;
   allUsers!: UserRegistration [];
 
   constructor(private service: UsermanagementService, private router: Router) { }
 
   ngOnInit(): void {
-    if (localStorage.getItem('Authorization') === undefined || localStorage.getItem('Authorization') === null) {
+    if (localStorage.getItem('cas-ticket') === undefined
+      || localStorage.getItem('cas-ticket') === null
+      || localStorage.getItem('Authorization') === undefined
+      || localStorage.getItem('Authorization') === null) {
       this.router.navigate(['/login'])
     }
     else {
-      this.username = localStorage.getItem('Authorization')!.toString();
+      this.permission = localStorage.getItem('Authorization')!.toString();
       this.getAllUsers();
     }
   }
@@ -41,7 +44,16 @@ export class PageMainMenuComponent implements OnInit {
      * navigates to "login"-webpage
      */
     goToLoginPage() {
-      localStorage.removeItem('Authorization');
+        this.service.logoutAndDeleteCasTicket().subscribe(
+      data => {
+          localStorage.removeItem('Authorization');
+          localStorage.removeItem('cas-ticket');
+       },
+      error => {
+         this.errorMessage="There was a problem with the logout.";
+        }
+      );
+
       this.router.navigate(['/login'])
     }
 

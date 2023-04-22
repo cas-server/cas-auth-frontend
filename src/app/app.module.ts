@@ -13,6 +13,8 @@ import { ElementCanvasComponent } from './element-canvas/element-canvas.componen
 import { ElementHeaderComponent } from './element-header/element-header.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from "@angular/forms";
+import {HTTP_INTERCEPTORS} from "@angular/common/http";
+import {AuthInterceptor} from "./service/AuthInterceptor";
 
 @NgModule({
   declarations: [
@@ -32,7 +34,13 @@ import { FormsModule } from "@angular/forms";
     FormsModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {UserLogin} from "../model/user-login";
 import {UsermanagementService} from "../service/usermanagement.service";
 import {Router} from "@angular/router";
+import {ResponseDTO} from "../model/ResponseDTO";
 
 @Component({
   selector: 'app-element-login-panel',
@@ -12,7 +13,8 @@ export class ElementLoginPanelComponent implements OnInit {
 
   user = new UserLogin();
   errorMessage!: string;
-  username!: string;
+  response!: ResponseDTO;
+  permission!: string;
 
   constructor(private service: UsermanagementService, private router: Router) {}
 
@@ -26,9 +28,11 @@ export class ElementLoginPanelComponent implements OnInit {
   loginUser() {
     this.service.loginUser(this.user).subscribe(
       data => {
-        this.username = data;
+        // this.permission = data;
         // set jwt as 'Authorization'
-        localStorage.setItem('Authorization', this.username);
+        this.response = JSON.parse(data);
+        localStorage.setItem('Authorization', this.response.permission);
+        localStorage.setItem('cas-ticket', this.response.ticket)
         this.router.navigate(['/mainPage'])
       },
       error => {
