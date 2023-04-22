@@ -28,7 +28,7 @@ export class ElementLoginPanelComponent implements OnInit {
   loginUser() {
     this.service.loginUser(this.user).subscribe(
       data => {
-        this.response = JSON.parse(data);
+        this.response = data;
         localStorage.setItem('Authorization', this.response.permission);
         localStorage.setItem('cas-ticket', this.response.ticket);
         this.router.navigate(['/mainPage']);
