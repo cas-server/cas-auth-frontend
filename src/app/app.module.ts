@@ -8,9 +8,6 @@ import { ElementLoginPanelComponent } from './element-login-panel/element-login-
 import { PageRegistrationComponent } from './page-registration/page-registration.component';
 import { ElementRegistrationPanelComponent } from './element-registration-panel/element-registration-panel.component';
 import { PageMainMenuComponent } from './page-main-menu/page-main-menu.component';
-import { ElementBodyComponent } from './element-body/element-body.component';
-import { ElementCanvasComponent } from './element-canvas/element-canvas.component';
-import { ElementHeaderComponent } from './element-header/element-header.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from "@angular/forms";
 import {HTTP_INTERCEPTORS} from "@angular/common/http";
@@ -23,10 +20,7 @@ import {AuthInterceptor} from "./service/AuthInterceptor";
     ElementLoginPanelComponent,
     PageRegistrationComponent,
     ElementRegistrationPanelComponent,
-    PageMainMenuComponent,
-    ElementBodyComponent,
-    ElementCanvasComponent,
-    ElementHeaderComponent
+    PageMainMenuComponent
   ],
   imports: [
     BrowserModule,
